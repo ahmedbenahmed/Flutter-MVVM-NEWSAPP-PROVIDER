@@ -12,30 +12,11 @@ class NewsView extends StatefulWidget {
 }
 
 class _NewsViewState extends State<NewsView> {
-  var _isInit = true;
-  var _isLoading = false;
-
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_isInit) {
-      setState(() {
-        _isLoading = true;
-      });
-      Provider.of<NewsListViewModel>(context, listen: false)
-          .topHeadlines()
-          .then((_) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
-    }
-    _isInit = false;
+    Future.microtask(() =>
+        Provider.of<NewsListViewModel>(context, listen: false).topHeadlines());
   }
 
   @override
@@ -46,7 +27,7 @@ class _NewsViewState extends State<NewsView> {
         title: Text("News MVVM DEMO"),
       ),
       body: SafeArea(
-        child: _isLoading
+        child: listViewModel.isLoading
             ? Center(
                 child: CircularProgressIndicator(),
               )
