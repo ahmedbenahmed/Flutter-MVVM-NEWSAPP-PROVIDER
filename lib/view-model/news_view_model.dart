@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:news_mvvm/model/news_error_model.dart';
 import 'package:news_mvvm/model/news_model.dart';

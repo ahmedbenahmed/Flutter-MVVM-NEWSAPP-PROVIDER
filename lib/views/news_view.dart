@@ -32,7 +32,11 @@ class _NewsViewState extends State<NewsView> {
                 child: CircularProgressIndicator(),
               )
             : (listViewModel.newsError != null
-                ? Center(child: Text(listViewModel.newsError.message))
+                ? Center(
+                    child: Text(
+                    listViewModel.newsError.message,
+                    textAlign: TextAlign.center,
+                  ))
                 : HomeGridView(listViewModel)),
       ),
     );
